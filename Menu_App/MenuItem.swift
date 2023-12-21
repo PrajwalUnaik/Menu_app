@@ -1,8 +1,9 @@
-//
-//  MenuItem.swift
-//  Menu_App
-//
-//  Created by Prajwal U on 20/12/23.
-//
+
 
 import Foundation
+struct MenuItem :Identifiable {
+    var id:UUID = UUID()
+    var name:String
+    var price:String
+    var imageName:String
+}

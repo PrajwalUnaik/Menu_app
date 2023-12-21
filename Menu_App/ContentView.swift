@@ -1,22 +1,30 @@
-//
-//  ContentView.swift
-//  Menu_App
-//
-//  Created by Prajwal U on 20/12/23.
-//
 
 import SwiftUI
 
-struct ContentView: View {
+struct MenuView: View {
+    
+    @State var menuItem:[MenuItem] = [MenuItem]()
+    var dataServices = DataService()
+    
     var body: some View {
-        VStack {
-            Text("Hello, world!")
+        List(menuItem) { item in
             
-        }
-        .padding()
+            HStack{
+                Image(item.imageName).resizable().aspectRatio(contentMode: .fit)
+                    .frame(height: 50).cornerRadius(10)
+                Text(item.name).bold()
+                Spacer()
+                Text("$" + item.price)
+            }.listRowSeparator(.hidden).listRowBackground(Color(.brown).opacity(0.2))
+        }.listStyle(.plain).onAppear(perform: {
+            //call for the data
+            menuItem = dataServices.getData()
+        })
     }
 }
 
 #Preview {
-    ContentView()
+    MenuView()
 }
+
+
